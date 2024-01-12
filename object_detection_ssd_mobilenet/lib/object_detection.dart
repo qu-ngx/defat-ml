@@ -1,18 +1,3 @@
-/*
- * Copyright 2023 The TensorFlow Authors. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *             http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/services.dart';
@@ -20,7 +5,7 @@ import 'package:image/image.dart' as img;
 import 'package:tflite_flutter/tflite_flutter.dart';
 
 class ObjectDetection {
-  static const String _modelPath = 'assets/models/detect.tflite';
+  static const String _modelPath = 'assets/models/detect_quant.tflite';
   static const String _labelPath = 'assets/models/labelmap.txt';
 
   Interpreter? _interpreter;
@@ -68,8 +53,8 @@ class ObjectDetection {
     // Resizing image fpr model, [300, 300]
     final imageInput = img.copyResize(
       image!,
-      width: 320,
-      height: 320,
+      width: 300,
+      height: 300,
     );
 
     // Creating matrix representation, [300, 300, 3]
@@ -95,7 +80,7 @@ class ObjectDetection {
 
     // Process bounding boxes
     final List<List<int>> locations = boxesTensor
-        .map((box) => box.map((value) => ((value.toInt()) * 320)).toList())
+        .map((box) => box.map((value) => ((value * 300).toInt())).toList())
         .toList();
 
     // Convert class indices to int
@@ -112,7 +97,7 @@ class ObjectDetection {
 
     log('Outlining objects...');
     for (var i = 0; i < numberOfDetections; i++) {
-      if (scoresTensor[i] > 0.06) {
+      if (scoresTensor[i] > 0.85) {
         // Rectangle drawing
         img.drawRect(
           imageInput,
@@ -120,18 +105,20 @@ class ObjectDetection {
           y1: locations[i][0],
           x2: locations[i][3],
           y2: locations[i][2],
-          color: img.ColorRgb8(255, 0, 0),
+          color: img.ColorRgb8(0, 255, 0),
           thickness: 3,
         );
+
+        print(locations);
 
         // Label drawing
         img.drawString(
           imageInput,
           '${classification[i]} ${scoresTensor[i]}',
           font: img.arial14,
-          x: locations[i][1] + 1,
-          y: locations[i][0] + 1,
-          color: img.ColorRgb8(255, 0, 0),
+          x: locations[i][1] + 7,
+          y: locations[i][0] + 7,
+          color: img.ColorRgb8(0, 255, 0),
         );
       }
     }
