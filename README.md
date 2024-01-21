@@ -1,9 +1,8 @@
 # DeFat - Machine Learning Backend by Quang Nguyen (Completed)
 
 **Overview:**
-
+  + This repo is a small demo Computer Vision app deployed an AI/ML model to detect different kind of food. This repo is a subsystem/backend of [DeFat](https://github.com/qu-ngx/DeFat)
   + The implementations took an average of 180 hours of testing different approaches to complete the first full deployment on Flutter.
-  + This Backend alone can be run seperately as a working application.
   + **Machine Learning Model:** ```SSD-MobileNet-V2-300x300``` (Also work with ```SSD-MobileNet-V2-FPN-Lite-320x320```)
   + **Method of training:** Transfer Learning on trained model with ```COCO2017``` set.
   + **Input/Output layer:** [Kaggle](https://www.kaggle.com/models/tensorflow/ssd-mobilenet-v2/frameworks/tensorFlow2)
@@ -11,8 +10,8 @@
 **Folder Structures:**
 
   + There are 3 main folders here with ```backend``` and ```object_detection_ssd_mobilenet``` being the main components.
-  + [backend](https://github.com/qu-ngx/defat-ml/tree/main/backend) included Jupyter notebook to help training and setting up an online virtual env without having to install locally on personal laptop and computers, labelimg for image labelling, and model quantizer for tflite file size reduction (32 bit down to 8 bit) 
-  + [object_detection_ssd_mobilenet]()
+  + [backend](https://github.com/qu-ngx/defat-ml/tree/main/backend) included Jupyter notebook to help training and setting up an online virtual env without having to install locally on personal laptop and computers, labelimg for image labelling, and model quantizer for tflite file size reduction (32 bit down to 8 bit)
+  + [object_detection_ssd_mobilenet](https://github.com/qu-ngx/defat-ml/tree/main/object_detection_ssd_mobilenet) - The main app running AI/ML or Food Detection (See the image Demo below)
   + There are indepth uses and documentations inside the codes for easy run.
   + For guide to install ```labelimg```: [labelimg](https://github.com/HumanSignal/labelImg)
 
