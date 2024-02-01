@@ -1,7 +1,7 @@
-# DeFat - Machine Learning Backend by Quang Nguyen (Completed)
+# NuFit - Machine Learning Backend by Quang Nguyen (Completed)
 
 **Overview:**
-  + This repo is a small demo Computer Vision app deployed an AI/ML model to detect different kind of food. This repo is a subsystem/backend of [DeFat](https://github.com/qu-ngx/DeFat)
+  + This repo is a small demo Computer Vision app deployed an AI/ML model to detect different kind of food. This repo is a subsystem/backend of [NuFit](https://github.com/qu-ngx/DeFat)
   + The implementations took an average of 180 hours of testing different approaches to complete the first full deployment on Flutter.
   + **Machine Learning Model:** ```SSD-MobileNet-V2-300x300``` (Also work with ```SSD-MobileNet-V2-FPN-Lite-320x320```)
   + **Method of training:** Transfer Learning on trained model with ```COCO2017``` set.
